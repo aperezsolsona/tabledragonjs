@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+    ports:
+      - "8080:3000"
+
+  postgres:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: tabledragonjs
+      POSTGRES_PASSWORD: tabledragonjs
+      POSTGRES_DB: tabledragonjs
